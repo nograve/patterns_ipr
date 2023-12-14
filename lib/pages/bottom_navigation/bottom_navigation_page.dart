@@ -4,6 +4,7 @@ import 'package:patterns_ipr/pages/behavioral/behavioral_page.dart';
 import 'package:patterns_ipr/pages/creational/creational_page.dart';
 import 'package:patterns_ipr/pages/structural/structural_page.dart';
 import 'package:patterns_ipr/widgets/custom_bottom_nav_bar_item.dart';
+import 'package:snowfall/snowfall.dart';
 
 class BottomNavigationPage extends StatefulWidget {
   const BottomNavigationPage({
@@ -19,6 +20,7 @@ class BottomNavigationPage extends StatefulWidget {
 }
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
+  bool _snowflakesEnabled = true;
   int _currentIndex = 0;
 
   static const tabs = [
@@ -46,7 +48,11 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   Widget build(BuildContext context) {
     const labelStyle = TextStyle(fontFamily: 'Roboto');
     return Scaffold(
-      body: SafeArea(child: widget.child),
+      body: Stack(
+        children: [
+          SafeArea(child: widget.child),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         selectedLabelStyle: labelStyle,
         unselectedLabelStyle: labelStyle,
@@ -62,6 +68,17 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
                 ? 1
                 : 2,
         items: tabs,
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          _snowflakesEnabled ? Icons.cloud : Icons.cloud_outlined,
+          color: Colors.grey,
+        ),
+        onPressed: () {
+          setState(() {
+            _snowflakesEnabled = !_snowflakesEnabled;
+          });
+        },
       ),
     );
   }
