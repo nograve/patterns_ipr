@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class PatternPage extends StatelessWidget {
   const PatternPage({super.key});
 
-  static const routeName = '/pattern';
+  static const routeName = 'pattern';
 
   @override
   Widget build(BuildContext context) {

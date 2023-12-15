@@ -4,6 +4,7 @@ import 'package:logger/logger.dart';
 import 'package:patterns_ipr/pages/behavioral/behavioral_page.dart';
 import 'package:patterns_ipr/pages/bottom_navigation/bottom_navigation_page.dart';
 import 'package:patterns_ipr/pages/creational/creational_page.dart';
+import 'package:patterns_ipr/pages/pattern/pattern_page.dart';
 import 'package:patterns_ipr/pages/structural/structural_page.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -14,7 +15,9 @@ final _logger = Logger();
 final router = GoRouter(
   initialLocation: CreationalPage.routeName,
   navigatorKey: _rootNavigatorKey,
+  debugLogDiagnostics: true,
   routes: [
+    /// Bottom navigation page
     ShellRoute(
       navigatorKey: _shellNavigatorKey,
       pageBuilder: (context, state, child) {
@@ -28,6 +31,7 @@ final router = GoRouter(
         );
       },
       routes: [
+        /// Creational page
         GoRoute(
           path: CreationalPage.routeName,
           parentNavigatorKey: _shellNavigatorKey,
@@ -36,7 +40,20 @@ final router = GoRouter(
               child: CreationalPage(),
             );
           },
+          routes: [
+            GoRoute(
+              path: PatternPage.routeName,
+              parentNavigatorKey: _shellNavigatorKey,
+              pageBuilder: (context, state) {
+                return const MaterialPage(
+                  child: PatternPage(),
+                );
+              },
+            ),
+          ],
         ),
+
+        /// Structural page
         GoRoute(
           path: StructuralPage.routeName,
           parentNavigatorKey: _shellNavigatorKey,
@@ -45,7 +62,20 @@ final router = GoRouter(
               child: StructuralPage(),
             );
           },
+          routes: [
+            GoRoute(
+              path: PatternPage.routeName,
+              parentNavigatorKey: _rootNavigatorKey,
+              pageBuilder: (context, state) {
+                return const MaterialPage(
+                  child: PatternPage(),
+                );
+              },
+            ),
+          ],
         ),
+
+        /// Behavioral page
         GoRoute(
           parentNavigatorKey: _shellNavigatorKey,
           path: BehavioralPage.routeName,
@@ -54,6 +84,17 @@ final router = GoRouter(
               child: BehavioralPage(),
             );
           },
+          routes: [
+            GoRoute(
+              path: PatternPage.routeName,
+              parentNavigatorKey: _shellNavigatorKey,
+              pageBuilder: (context, state) {
+                return const MaterialPage(
+                  child: PatternPage(),
+                );
+              },
+            ),
+          ],
         ),
       ],
     ),

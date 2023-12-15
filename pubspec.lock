@@ -162,7 +162,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "015158f4dd89d57cbba21303cc0b43580d1ebef2"
+      resolved-ref: ca49291a48d7c41500593b14bdade5a120883bf6
       url: "https://github.com/nograve/snowfall.git"
     source: git
     version: "0.0.2"
