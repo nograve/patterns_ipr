@@ -1,98 +1,111 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:logger/logger.dart';
+import 'package:patterns_ipr/application/router/error/error_page.dart';
+import 'package:patterns_ipr/application/router/scaffold_with_nested_navigation.dart';
 import 'package:patterns_ipr/pages/behavioral/behavioral_page.dart';
-import 'package:patterns_ipr/pages/bottom_navigation/bottom_navigation_page.dart';
 import 'package:patterns_ipr/pages/creational/creational_page.dart';
 import 'package:patterns_ipr/pages/pattern/pattern_page.dart';
+import 'package:patterns_ipr/pages/pattern/pattern_page_arguments.dart';
 import 'package:patterns_ipr/pages/structural/structural_page.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _shellNavigatorKey = GlobalKey<NavigatorState>();
-
-final _logger = Logger();
+final shellNavigatorCreationalKey = GlobalKey<NavigatorState>();
+final shellNavigatorStructuralKey = GlobalKey<NavigatorState>();
+final shellNavigatorBehavioralKey = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
   initialLocation: CreationalPage.routeName,
   navigatorKey: _rootNavigatorKey,
-  debugLogDiagnostics: true,
   routes: [
-    /// Bottom navigation page
-    ShellRoute(
-      navigatorKey: _shellNavigatorKey,
-      pageBuilder: (context, state, child) {
-        _logger.i('route: ${state.fullPath}');
-
-        return NoTransitionPage(
-          child: BottomNavigationPage(
-            location: state.fullPath ?? CreationalPage.routeName,
-            child: child,
-          ),
-        );
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return ScaffoldWithNestedNavigation(navigationShell: navigationShell);
       },
-      routes: [
-        /// Creational page
-        GoRoute(
-          path: CreationalPage.routeName,
-          parentNavigatorKey: _shellNavigatorKey,
-          pageBuilder: (context, state) {
-            return const NoTransitionPage(
-              child: CreationalPage(),
-            );
-          },
+      branches: [
+        StatefulShellBranch(
+          navigatorKey: shellNavigatorCreationalKey,
           routes: [
             GoRoute(
-              path: PatternPage.routeName,
-              parentNavigatorKey: _shellNavigatorKey,
-              pageBuilder: (context, state) {
-                return const MaterialPage(
-                  child: PatternPage(),
-                );
-              },
+              path: CreationalPage.routeName,
+              pageBuilder: (context, state) => const NoTransitionPage(
+                child: CreationalPage(),
+              ),
+              routes: [
+                // child route
+                GoRoute(
+                  path: PatternPage.routeName,
+                  pageBuilder: (context, state) {
+                    final arguments = state.extra;
+
+                    return NoTransitionPage(
+                      child: arguments is PatternPageArguments
+                          ? PatternPage(
+                              arguments: arguments,
+                            )
+                          : const ErrorPage(),
+                    );
+                  },
+                ),
+              ],
             ),
           ],
         ),
-
-        /// Structural page
-        GoRoute(
-          path: StructuralPage.routeName,
-          parentNavigatorKey: _shellNavigatorKey,
-          pageBuilder: (context, state) {
-            return const NoTransitionPage(
-              child: StructuralPage(),
-            );
-          },
+        // second branch (B)
+        StatefulShellBranch(
+          navigatorKey: shellNavigatorBehavioralKey,
           routes: [
+            // top route inside branch
             GoRoute(
-              path: PatternPage.routeName,
-              parentNavigatorKey: _rootNavigatorKey,
-              pageBuilder: (context, state) {
-                return const MaterialPage(
-                  child: PatternPage(),
-                );
-              },
+              path: StructuralPage.routeName,
+              pageBuilder: (context, state) => const NoTransitionPage(
+                child: StructuralPage(),
+              ),
+              routes: [
+                // child route
+                GoRoute(
+                  path: PatternPage.routeName,
+                  pageBuilder: (context, state) {
+                    final arguments = state.extra;
+
+                    return NoTransitionPage(
+                      child: arguments is PatternPageArguments
+                          ? PatternPage(
+                              arguments: arguments,
+                            )
+                          : const ErrorPage(),
+                    );
+                  },
+                ),
+              ],
             ),
           ],
         ),
-
-        /// Behavioral page
-        GoRoute(
-          parentNavigatorKey: _shellNavigatorKey,
-          path: BehavioralPage.routeName,
-          pageBuilder: (context, state) {
-            return const NoTransitionPage(
-              child: BehavioralPage(),
-            );
-          },
+        StatefulShellBranch(
+          navigatorKey: shellNavigatorStructuralKey,
           routes: [
+            // top route inside branch
             GoRoute(
-              path: PatternPage.routeName,
-              parentNavigatorKey: _shellNavigatorKey,
-              pageBuilder: (context, state) {
-                return const MaterialPage(
-                  child: PatternPage(),
-                );
-              },
+              path: BehavioralPage.routeName,
+              pageBuilder: (context, state) => const NoTransitionPage(
+                child: BehavioralPage(),
+              ),
+              routes: [
+                // child route
+                GoRoute(
+                  path: PatternPage.routeName,
+                  pageBuilder: (context, state) {
+                    final arguments = state.extra;
+
+                    return NoTransitionPage(
+                      child: arguments is PatternPageArguments
+                          ? PatternPage(
+                              arguments: arguments,
+                            )
+                          : const ErrorPage(),
+                    );
+                  },
+                ),
+              ],
             ),
           ],
         ),

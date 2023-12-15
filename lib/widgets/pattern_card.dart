@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:patterns_ipr/application/router/router.dart';
 import 'package:patterns_ipr/data/models/pattern_model.dart';
 import 'package:patterns_ipr/pages/pattern/pattern_page.dart';
+import 'package:patterns_ipr/pages/pattern/pattern_page_arguments.dart';
 
 class PatternCard extends StatefulWidget {
-  const PatternCard({required this.pattern, super.key});
+  const PatternCard({
+    required this.currentRoute,
+    required this.pattern,
+    super.key,
+  });
 
   final PatternModel pattern;
+
+  final String currentRoute;
 
   @override
   State<PatternCard> createState() => _PatternCardState();
@@ -20,12 +27,12 @@ class _PatternCardState extends State<PatternCard> {
 
     return Card(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
+        padding: EdgeInsets.symmetric(vertical: 8.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 6),
+              padding: EdgeInsets.only(left: 6.w),
               child: Container(
                 width: 60.r,
                 height: 60.r,
@@ -58,6 +65,15 @@ class _PatternCardState extends State<PatternCard> {
   }
 
   void _onDetailsPressed() {
-    context.pushNamed(PatternPage.routeName);
+    final pattern = widget.pattern;
+
+    router.go(
+      '${widget.currentRoute}/${PatternPage.routeName}',
+      extra: PatternPageArguments(
+        patternName: pattern.name,
+        patternDescription: pattern.description,
+        imagePath: pattern.imagePath,
+      ),
+    );
   }
 }

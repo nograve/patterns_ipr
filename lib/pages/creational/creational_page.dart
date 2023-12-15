@@ -7,7 +7,7 @@ import 'package:snowfall/snowfall.dart';
 class CreationalPage extends StatefulWidget {
   const CreationalPage({super.key});
 
-  static const routeName = '/';
+  static const routeName = '/creational';
 
   @override
   State<CreationalPage> createState() => _CreationalPageState();
@@ -42,6 +42,7 @@ class _CreationalPageState extends State<CreationalPage> {
             children: [
               SnowfallWidget(
                 isEnabled: _snowflakesEnabled,
+                numberOfSnowflakes: 10,
                 color: Colors.grey,
                 maxSize: 50,
                 child: Padding(
@@ -49,8 +50,10 @@ class _CreationalPageState extends State<CreationalPage> {
                   child: ListView.separated(
                     itemCount: 4,
                     separatorBuilder: (_, __) => SizedBox(height: 6.h),
-                    itemBuilder: (_, index) =>
-                        PatternCard(pattern: _patterns[index]),
+                    itemBuilder: (_, index) => PatternCard(
+                      currentRoute: CreationalPage.routeName,
+                      pattern: _patterns[index],
+                    ),
                   ),
                 ),
               ),
