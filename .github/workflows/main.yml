@@ -1,0 +1,39 @@
+name: patterns_ipr
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  semantic-pull-request:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
+
+  build:
+    defaults:
+      run:
+        working-directory: "."
+
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v2
+
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: 📦 Install Dependencies
+        run: |
+          flutter pub global activate very_good_cli
+          very_good --analytics false
+          very_good packages get --recursive
+
+      - name: 🧬 Generate Code
+        run: flutter pub run build_runner build --delete-conflicting-outputs
