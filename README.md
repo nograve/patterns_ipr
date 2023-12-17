@@ -1,3 +1,3 @@
 # patterns_ipr
 
-A new Flutter project.
+Application for learning patterns.
