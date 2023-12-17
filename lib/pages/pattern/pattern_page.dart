@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:patterns_ipr/pages/pattern/pattern_page_arguments.dart';
 import 'package:patterns_ipr/pages/pattern/widgets/code_card.dart';
 import 'package:patterns_ipr/res/style/styles.dart';
-import 'package:recase/recase.dart';
 import 'package:share_plus/share_plus.dart';
 
 class PatternPage extends StatelessWidget {
@@ -75,7 +74,7 @@ class PatternPage extends StatelessWidget {
                   SizedBox(height: 8.h),
                   CodeCard(codeText: pattern.code),
                 ],
-              )
+              ),
             ],
           ),
         ),
@@ -85,7 +84,7 @@ class PatternPage extends StatelessWidget {
 
   void _onSharePressed() {
     Share.share(
-      'https://refactoring.guru/design-patterns/${arguments.pattern.name.paramCase}',
+      arguments.pattern.code,
     );
   }
 }
