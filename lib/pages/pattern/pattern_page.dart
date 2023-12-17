@@ -65,7 +65,7 @@ class PatternPage extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.only(left: 8.w),
                     alignment: Alignment.centerLeft,
-                    child: const Text(
+                    child: Text(
                       'Code realisation',
                       style: Styles.titleMedium18,
                       textAlign: TextAlign.left,
