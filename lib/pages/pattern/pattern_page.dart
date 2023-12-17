@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:patterns_ipr/pages/pattern/pattern_page_arguments.dart';
 import 'package:patterns_ipr/pages/pattern/widgets/code_card.dart';
+import 'package:patterns_ipr/res/style/styles.dart';
 import 'package:recase/recase.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -46,7 +47,10 @@ class PatternPage extends StatelessWidget {
               SizedBox(height: 6.h),
 
               /// Pattern name
-              Text(pattern.name),
+              Text(
+                pattern.name,
+                style: Styles.headlineSmall24,
+              ),
               SizedBox(height: 6.h),
 
               /// Pattern description
@@ -64,6 +68,7 @@ class PatternPage extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: const Text(
                       'Code realisation',
+                      style: Styles.titleMedium18,
                       textAlign: TextAlign.left,
                     ),
                   ),

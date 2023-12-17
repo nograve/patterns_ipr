@@ -4,6 +4,7 @@ import 'package:patterns_ipr/application/router/router.dart';
 import 'package:patterns_ipr/data/models/pattern_model.dart';
 import 'package:patterns_ipr/pages/pattern/pattern_page.dart';
 import 'package:patterns_ipr/pages/pattern/pattern_page_arguments.dart';
+import 'package:patterns_ipr/res/style/styles.dart';
 
 class PatternCard extends StatefulWidget {
   const PatternCard({
@@ -50,7 +51,10 @@ class _PatternCardState extends State<PatternCard> {
               child: Column(
                 children: [
                   /// Pattern name
-                  Text(pattern.name),
+                  Text(
+                    pattern.name,
+                    style: Styles.titleMedium18,
+                  ),
                   SizedBox(height: 2.h),
 
                   /// Pattern description
