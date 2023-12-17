@@ -24,6 +24,7 @@ class _StructuralPageState extends State<StructuralPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         title: const Text('Structural patterns'),
       ),
       body: Padding(

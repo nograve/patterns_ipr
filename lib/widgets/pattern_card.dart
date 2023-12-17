@@ -31,13 +31,17 @@ class _PatternCardState extends State<PatternCard> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            /// Pattern image
             Padding(
               padding: EdgeInsets.only(left: 6.w),
               child: Container(
                 width: 60.r,
                 height: 60.r,
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage(pattern.imagePath)),
+                  image: DecorationImage(
+                    image: AssetImage(pattern.imagePath),
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             ),
@@ -45,7 +49,11 @@ class _PatternCardState extends State<PatternCard> {
               width: 180.w,
               child: Column(
                 children: [
+                  /// Pattern name
                   Text(pattern.name),
+                  SizedBox(height: 2.h),
+
+                  /// Pattern description
                   Text(
                     pattern.description,
                     maxLines: 3,
@@ -54,6 +62,8 @@ class _PatternCardState extends State<PatternCard> {
                 ],
               ),
             ),
+
+            /// Details button
             TextButton(
               onPressed: _onDetailsPressed,
               child: const Text('Details'),
@@ -69,11 +79,7 @@ class _PatternCardState extends State<PatternCard> {
 
     router.go(
       '${widget.currentRoute}/${PatternPage.routeName}',
-      extra: PatternPageArguments(
-        patternName: pattern.name,
-        patternDescription: pattern.description,
-        imagePath: pattern.imagePath,
-      ),
+      extra: PatternPageArguments(pattern: pattern),
     );
   }
 }

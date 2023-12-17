@@ -29,13 +29,13 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
           ),
           NavigationDestination(
             label: 'Structural',
-            icon: Icon(Icons.lightbulb_outline),
-            selectedIcon: Icon(Icons.lightbulb),
+            icon: Icon(Icons.bookmarks_outlined),
+            selectedIcon: Icon(Icons.bookmarks),
           ),
           NavigationDestination(
             label: 'Behavioral',
-            icon: Icon(Icons.lightbulb_outline),
-            selectedIcon: Icon(Icons.lightbulb),
+            icon: Icon(Icons.leaderboard_outlined),
+            selectedIcon: Icon(Icons.leaderboard),
           ),
         ],
         onDestinationSelected: _goBranch,

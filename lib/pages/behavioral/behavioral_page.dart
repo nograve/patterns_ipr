@@ -24,6 +24,7 @@ class _BehavioralPageState extends State<BehavioralPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         title: const Text('Behavioral patterns'),
       ),
       body: Padding(

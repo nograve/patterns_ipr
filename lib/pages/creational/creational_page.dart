@@ -27,6 +27,7 @@ class _CreationalPageState extends State<CreationalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         title: const Text('Creational patterns'),
       ),
       floatingActionButton: FloatingActionButton(

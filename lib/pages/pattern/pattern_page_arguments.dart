@@ -1,11 +1,7 @@
-class PatternPageArguments {
-  PatternPageArguments({
-    required this.patternName,
-    required this.patternDescription,
-    required this.imagePath,
-  });
+import 'package:patterns_ipr/data/models/pattern_model.dart';
 
-  final String patternName;
-  final String patternDescription;
-  final String imagePath;
+class PatternPageArguments {
+  PatternPageArguments({required this.pattern});
+
+  final PatternModel pattern;
 }
