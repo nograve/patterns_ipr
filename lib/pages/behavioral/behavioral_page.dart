@@ -13,13 +13,6 @@ class BehavioralPage extends StatefulWidget {
 }
 
 class _BehavioralPageState extends State<BehavioralPage> {
-  final _routes = [
-    BehavioralPatterns.iterator,
-    BehavioralPatterns.observer,
-    BehavioralPatterns.state,
-    BehavioralPatterns.strategy,
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +27,7 @@ class _BehavioralPageState extends State<BehavioralPage> {
           separatorBuilder: (_, __) => SizedBox(height: 6.h),
           itemBuilder: (_, index) => PatternCard(
             currentRoute: BehavioralPage.routeName,
-            pattern: _routes[index],
+            pattern: behavioralPatterns[index],
           ),
         ),
       ),

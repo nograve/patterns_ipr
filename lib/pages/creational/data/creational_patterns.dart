@@ -1,8 +1,8 @@
 import 'package:patterns_ipr/data/models/pattern_model.dart';
 import 'package:patterns_ipr/generated/assets.dart';
 
-class CreationalPatterns {
-  static final factoryMethod = PatternModel(
+final creationalPatterns = [
+  PatternModel(
     name: 'Factory Method',
     description:
         'Factory Method is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.',
@@ -85,9 +85,8 @@ class Application is
     method main() is
         this.initialize()
         dialog.render()''',
-  );
-
-  static final builder = PatternModel(
+  ),
+  PatternModel(
     name: 'Builder',
     description:
         'Builder is a creational design pattern that lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code.',
@@ -234,9 +233,8 @@ class Application is
         // object since the director isn't aware of and not
         // dependent on concrete builders and products.
         Manual manual = builder.getProduct()''',
-  );
-
-  static final prototype = PatternModel(
+  ),
+  PatternModel(
     name: 'Prototype',
     description:
         'Prototype is a creational design pattern that lets you copy existing objects without making your code dependent on their classes.',
@@ -335,9 +333,8 @@ class Application is
 
         // The `shapesCopy` array contains exact copies of the
         // `shape` array's children.''',
-  );
-
-  static final singleton = PatternModel(
+  ),
+  PatternModel(
     name: 'Singleton',
     description:
         'Singleton is a creational design pattern that lets you ensure that a class has only one instance, while providing a global access point to this instance.',
@@ -388,5 +385,5 @@ class Application is
         bar.query("SELECT ...")
         // The variable `bar` will contain the same object as
         // the variable `foo`.''',
-  );
-}
+  ),
+];

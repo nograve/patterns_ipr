@@ -16,13 +16,6 @@ class CreationalPage extends StatefulWidget {
 class _CreationalPageState extends State<CreationalPage> {
   bool _snowflakesEnabled = true;
 
-  final _patterns = [
-    CreationalPatterns.factoryMethod,
-    CreationalPatterns.builder,
-    CreationalPatterns.prototype,
-    CreationalPatterns.singleton,
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +46,7 @@ class _CreationalPageState extends State<CreationalPage> {
                     separatorBuilder: (_, __) => SizedBox(height: 6.h),
                     itemBuilder: (_, index) => PatternCard(
                       currentRoute: CreationalPage.routeName,
-                      pattern: _patterns[index],
+                      pattern: creationalPatterns[index],
                     ),
                   ),
                 ),

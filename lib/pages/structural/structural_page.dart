@@ -13,13 +13,6 @@ class StructuralPage extends StatefulWidget {
 }
 
 class _StructuralPageState extends State<StructuralPage> {
-  final _patterns = [
-    StructuralPatterns.adapter,
-    StructuralPatterns.bridge,
-    StructuralPatterns.decorator,
-    StructuralPatterns.facade,
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +27,7 @@ class _StructuralPageState extends State<StructuralPage> {
           separatorBuilder: (_, __) => SizedBox(height: 6.h),
           itemBuilder: (_, index) => PatternCard(
             currentRoute: StructuralPage.routeName,
-            pattern: _patterns[index],
+            pattern: structuralPatterns[index],
           ),
         ),
       ),

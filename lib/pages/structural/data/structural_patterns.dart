@@ -1,8 +1,8 @@
 import 'package:patterns_ipr/data/models/pattern_model.dart';
 import 'package:patterns_ipr/generated/assets.dart';
 
-class StructuralPatterns {
-  static final adapter = PatternModel(
+final structuralPatterns = [
+  PatternModel(
     name: 'Adapter',
     description:
         'Adapter is a structural design pattern that allows objects with incompatible interfaces to collaborate.',
@@ -65,9 +65,8 @@ small_sqpeg_adapter = new SquarePegAdapter(small_sqpeg)
 large_sqpeg_adapter = new SquarePegAdapter(large_sqpeg)
 hole.fits(small_sqpeg_adapter) // true
 hole.fits(large_sqpeg_adapter) // false''',
-  );
-
-  static final bridge = PatternModel(
+  ),
+  PatternModel(
     name: 'Bridge',
     description:
         'Bridge is a structural design pattern that lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can be developed independently of each other.',
@@ -134,9 +133,8 @@ remote.togglePower()
 
 radio = new Radio()
 remote = new AdvancedRemoteControl(radio)''',
-  );
-
-  static final decorator = PatternModel(
+  ),
+  PatternModel(
     name: 'Decorator',
     description:
         'Decorator is a structural design pattern that lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.',
@@ -263,9 +261,8 @@ class ApplicationConfigurator is
         logger = new SalaryManager(source)
         salary = logger.load()
     // ...''',
-  );
-
-  static final facade = PatternModel(
+  ),
+  PatternModel(
     name: 'Facade',
     description:
         'Facade is a structural design pattern that provides a simplified interface to a library, a framework, or any other complex set of classes.',
@@ -318,5 +315,5 @@ class Application is
         convertor = new VideoConverter()
         mp4 = convertor.convert("funny-cats-video.ogg", "mp4")
         mp4.save()''',
-  );
-}
+  ),
+];

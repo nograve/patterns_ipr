@@ -1,8 +1,8 @@
 import 'package:patterns_ipr/data/models/pattern_model.dart';
 import 'package:patterns_ipr/generated/assets.dart';
 
-class BehavioralPatterns {
-  static final iterator = PatternModel(
+final behavioralPatterns = [
+  PatternModel(
     name: 'Iterator',
     description:
         'Iterator is a behavioral design pattern that lets you traverse elements of a collection without exposing its underlying representation (list, stack, tree, etc.).',
@@ -106,9 +106,8 @@ class Application is
     method sendSpamToCoworkers(profile) is
         iterator = network.createCoworkersIterator(profile.getId())
         spammer.send(iterator, "Very important message")''',
-  );
-
-  static final observer = PatternModel(
+  ),
+  PatternModel(
     name: 'Observer',
     description:
         'Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.',
@@ -201,9 +200,8 @@ class Application is
             "admin@example.com",
             "Someone has changed the file: %s")
         editor.events.subscribe("save", emailAlerts)''',
-  );
-
-  static final state = PatternModel(
+  ),
+  PatternModel(
     name: 'State',
     description:
         'State is a behavioral design pattern that lets an object alter its behavior when its internal state changes. It appears as if the object changed its class.',
@@ -335,9 +333,8 @@ class PlayingState extends State is
             player.previous()
         else
             player.rewind(5)''',
-  );
-
-  static final strategy = PatternModel(
+  ),
+  PatternModel(
     name: 'Strategy',
     description:
         'Strategy is a behavioral design pattern that lets you define a family of algorithms, put each of them into a separate class, and make their objects interchangeable.',
@@ -409,5 +406,5 @@ class ExampleApplication is
         result = context.executeStrategy(First number, Second number)
 
         Print result.''',
-  );
-}
+  ),
+];
